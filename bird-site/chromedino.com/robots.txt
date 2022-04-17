@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /*?
+Allow: /*.js
+Allow: /*.css
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.png
+Sitemap: https://chromedino.com/sitemap.xml

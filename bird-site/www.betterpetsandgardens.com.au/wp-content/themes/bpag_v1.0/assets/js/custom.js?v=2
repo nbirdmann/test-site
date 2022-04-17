@@ -1,0 +1,156 @@
+jQuery(document).ready(function(){
+
+// Better Pets Mobile
+$(".menu-primary-menu-container").before( "<span class='glyphicon glyphicon-align-justify small-dropdown'></span>" );
+
+$(function(){
+
+    $(".small-dropdown").click(function(){
+        $("#nav .menu-primary-menu-container > ul").toggle();
+    });
+
+});
+// end for Better Pets Mobile
+
+
+
+// Drop Down Menu
+jQuery(" #nav ul li ul ").css({display: "none"}); // Opera Fix
+jQuery(" #nav li").hover(function(){
+  jQuery(this).addClass("activeLink");
+  jQuery(this).find('ul:first').css({visibility: "visible",display: "none"}).slideDown(150);
+  },function(){
+  jQuery(this).removeClass("activeLink");
+  jQuery(this).find('ul:first').fadeOut(300);
+  });
+
+// Field Label
+    jQuery('input[type="text"], input[type="tel"], input[type="email"]').focus(function() {
+        if (this.value == this.defaultValue){
+            this.value = '';
+        }
+        if(this.value != this.defaultValue){
+            this.select();
+        }
+    });
+    jQuery('input[type="text"], input[type="tel"], input[type="email"]').blur(function() {
+        if (this.value == ''){
+            this.value = this.defaultValue;
+        }
+    });
+	jQuery('textarea').focus(function() {
+        if (this.value == this.defaultValue){
+            this.value = '';
+        }
+        if(this.value != this.defaultValue){
+            this.select();
+        }
+    });
+    jQuery('textarea').blur(function() {
+        if (this.value == ''){
+            this.value = this.defaultValue;
+        }
+    });
+
+	// Scroll top top
+    $('a[href=#top]').click(function(){
+        $('html, body').animate({scrollTop:0}, 'slow');
+        return false;
+	});
+
+    // A-Z Index plugin smooth scroll
+    $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+            || location.hostname == this.hostname) {
+
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+               if (target.length) {
+                 $('html,body').animate({
+                     scrollTop: target.offset().top
+                }, 1000);
+                return false;
+            }
+        }
+    });
+
+    //Adding classes to specifc product list items
+	$('#hot-special .wpc-product:nth-child(5n+1)').addClass('left');
+
+    //Sub nav on inner pages
+    $('div.side ul li a').each(function() {
+        $(this).click(function(event) {
+            if ($(this).next('ul').size() > 0) {
+                event.preventDefault();
+
+                if ($(this).next('ul').is(':visible')) {
+                    $(this).next('ul').slideUp(function() { $(this).parent().removeClass('current_page_item') });
+                } else {
+                    $(this).parent().addClass('current_page_item');
+                    $(this).next('ul').hide();
+                    $(this).next('ul').slideDown();
+                }
+            }
+        });
+
+    });
+
+})
+
+
+$(window).load(function() {
+    // Responsive tabs
+    RESPONSIVEUI.responsiveTabs();
+
+    $('.information-block').css('visibility', 'visible');
+
+    $('#carousel').flexslider({
+        animation: "slide",
+        controlNav: false,
+        slideshow: false,
+        itemWidth: 170,
+        itemMargin: 15,
+        asNavFor: '#range-slider'
+    });
+
+    $('#range-slider').flexslider({
+        animation: "slide",
+        controlNav: false,
+        animationLoop: true,
+        slideshowSpeed: 5000,
+        slideshow: true,
+        sync: "#carousel"
+    });
+
+    $('#store-slider').flexslider({
+        animation: "slide",
+        slideshowSpeed: 5000,
+        controlNav: false
+    });
+
+    $('#banner').flexslider({
+        animation: "slide",
+        slideshowSpeed: 5000,
+        controlNav: true,
+        directionNav: false
+    });
+    $('#ourbrands').flexslider({
+        animation: "slide",
+        slideshowSpeed: 5000,
+        controlNav: false,
+        directionNav: true,
+        itemWidth: 165,
+        itemMargin: 20
+    });
+});
+
+
+// Sticky header Letters
+
+$(window).scroll(function () {
+    if( $(window).scrollTop() > $('#letters').offset().top && !($('#letters').hasClass('stickyalphabet'))){
+    $('#letters').addClass('stickyalphabet');
+    } else if ($(window).scrollTop() < 620){
+    $('#letters').removeClass('stickyalphabet');
+    }
+});
